@@ -30,6 +30,10 @@ body.menu-is-open {
     overflow: hidden;
 }
 
+body.product-overlay-is-open {
+    overflow: hidden;
+}
+
 p,
 button {
     font-weight: 300;
@@ -117,6 +121,81 @@ button {
     cursor: pointer;
 }
 
+/* Product overlay */
+.product-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    height: 100dvh;
+    background: var(--white);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateY(28px);
+    transition: opacity 300ms ease, transform 420ms ease, visibility 0s linear 420ms;
+}
+
+.product-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+.product-overlay-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1080px;
+    min-height: 100%;
+    padding: 0 16px;
+}
+
+.product-overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 49px;
+}
+
+.product-overlay-header-spacer {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.product-overlay-content {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 24px 0 48px;
+}
+
+.product-overlay p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 19.6px;
+    text-transform: uppercase;
+}
+
+.product-overlay-close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 49px;
+    padding: 18px 0 16px;
+    font-size: 14px;
+    line-height: 15px;
+    cursor: pointer;
+}
+
 /* Custom cursor */
 #cursor-mag {
     position: fixed;
@@ -144,7 +223,8 @@ button {
 }
 
 /* Cursor responsiveness */
-@media (hover: none), (pointer: coarse) {
+@media (hover: none),
+(pointer: coarse) {
     #cursor-mag {
         display: none;
     }
@@ -169,7 +249,7 @@ button {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    transition: opacity 320ms ease, visibility 0s linear 700ms;
+    transition: opacity 380ms ease, visibility 0s linear 800ms;
 }
 
 .menu-overlay.is-open {
@@ -180,7 +260,7 @@ button {
 }
 
 .menu-overlay:not(.is-open) {
-    transition: opacity 320ms ease 150ms, visibility 0s linear 470ms;
+    transition: opacity 380ms ease 180ms, visibility 0s linear 560ms;
 }
 
 .menu-overlay.is-closing {
@@ -210,7 +290,7 @@ button {
     /* letter-spacing: 0.04em; */
     text-align: center;
     text-decoration: none;
-    transition: opacity 360ms ease, transform 360ms ease, filter 360ms ease, color 180ms ease;
+    transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease, color 220ms ease;
 }
 
 .menu-overlay.is-open .menu-item {
@@ -324,7 +404,7 @@ html {
 }
 
 .hero-title {
-    gap: 12px;
+    gap: 16px;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -358,9 +438,9 @@ html {
 
 .hero-title h1 {
     font-family: "Playfair Display", Georgia, serif;
-    font-size: 48px;
+    font-size: 34px;
     font-weight: 600;
-    line-height: 41px;
+    line-height: 34px;
     letter-spacing: 0.68px;
 }
 
@@ -412,6 +492,15 @@ html {
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .hero-title h1 {
+        font-size: 52px;
+        line-height: 58px;
+    }
+
+    .menu-item {
+        font-weight: 200;
+    }
 }
 
 .card-image-wrap {
@@ -425,7 +514,8 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 180ms ease;
+    transform-origin: center center;
+    transition: transform 500ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -489,6 +579,10 @@ html {
     padding: 32px 16px;
 }
 
+.footer-columns {
+    width: 100%;
+}
+
 .footer-buttons button {
     appearance: none;
     display: flex;
@@ -543,4 +637,31 @@ html {
     font-weight: 300;
     line-height: 14px;
     letter-spacing: 0.28px;
+}
+
+.footer-details {
+    width: 100%;
+    padding: 32px 0;
+}
+
+@media (min-width: 768px) {
+    .site-footer {
+        width: 50%;
+        max-width: 540px;
+        margin-left: max(0px, calc((100% - 1080px) / 2));
+        margin-right: auto;
+    }
+
+    .footer-columns {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .footer-details {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 32px 0;
+    }
 }

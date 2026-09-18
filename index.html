@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Playfair+Display:wght@600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,11 +19,11 @@
             <header class="site-header">
                 <div class="header-side">
                     <button type="button" class="menu-toggle" data-magnetic aria-expanded="false"
-                        aria-controls="menu-overlay">MENU</button>
+                        aria-controls="menu-overlay">МЕНЮ</button>
                 </div>
                 <a href="#" class="brand" data-magnetic aria-label="Scroll to top">CAELUM</a>
                 <div class="header-side header-side-right">
-                    <button type="button" data-magnetic>CART <span>(0)</span></button>
+                    <button type="button" data-magnetic>КОРЗИНА <span>(0)</span></button>
                 </div>
             </header>
         </div>
@@ -42,14 +42,14 @@
             <section class="hero">
                 <img src="images/hero-image-7.jpg" alt="">
                 <div class="hero-title">
-                    <h1>“LONELINESS”</h1>
-                    <p>THE NEW COLLECTION</p>
+                    <h1>“ОДИНОЧЕСТВО”</h1>
+                    <p>НОВАЯ КОЛЛЕКЦИЯ</p>
 
                 </div>
             </section>
 
             <section class="collection">
-                <h2>NEW COLLECTION</h2>
+                <h2>НОВАЯ КОЛЛЕКЦИЯ</h2>
                 <div class="cards">
                     <article class="card">
                         <div class="card-image-wrap">
@@ -111,20 +111,38 @@
 
         <footer class="site-footer">
             <h2>CAELUM</h2>
-            <div class="footer-buttons" role="group" aria-label="Footer buttons">
-                <button type="button" aria-disabled="true" tabindex="-1">контакты</button>
-                <button type="button" aria-disabled="true" tabindex="-1">FAQ</button>
-                <button type="button" aria-disabled="true" tabindex="-1">Сотрудничество</button>
-                <button type="button" aria-disabled="true" tabindex="-1">ПОлитика конфиденциальности</button>
-                <button type="button" aria-disabled="true" tabindex="-1">Файлы cookie</button>
+            <div class="footer-columns">
+                <div class="footer-buttons" role="group" aria-label="Footer buttons">
+                    <button type="button" aria-disabled="true" tabindex="-1">контакты</button>
+                    <button type="button" aria-disabled="true" tabindex="-1">FAQ</button>
+                    <button type="button" aria-disabled="true" tabindex="-1">Сотрудничество</button>
+                    <button type="button" aria-disabled="true" tabindex="-1">ПОлитика конфиденциальности</button>
+                    <button type="button" aria-disabled="true" tabindex="-1">Файлы cookie</button>
+                </div>
+                <div class="footer-details">
+                    <div class="address">
+                        <p>АДРЕС</p>
+                        <p>г. Москва, Какая-то улица, 67с1</p>
+                        <p>Пн-Вс, 12:00-22:00</p>
+                    </div>
+                    <p class="copyright">© CAELUM 2026</p>
+                </div>
             </div>
-            <div class="address">
-                <p>АДРЕС</p>
-                <p>г. Москва, Какая-то улица, 67с1</p>
-                <p>Пн-Вс, 12:00-22:00</p>
-            </div>
-            <p class="copyright">© CAELUM 2026</p>
         </footer>
+    </div>
+
+    <div class="product-overlay" id="product-overlay" aria-hidden="true">
+        <div class="product-overlay-inner">
+            <div class="product-overlay-header">
+                <div class="product-overlay-header-spacer"></div>
+                <button class="product-overlay-close" type="button" data-magnetic aria-label="Close product overlay">
+                    ЗАКРЫТЬ
+                </button>
+            </div>
+            <div class="product-overlay-content">
+                <p>empty states</p>
+            </div>
+        </div>
     </div>
 
     <div id="cursor-mag" aria-hidden="true"></div>
