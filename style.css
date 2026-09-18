@@ -1,0 +1,344 @@
+:root {
+    --black: #000;
+    --black-50: rgba(0, 0, 0, 0.5);
+    --black-75: rgba(0, 0, 0, 0.75);
+    --black-24: rgba(0, 0, 0, 0.24);
+    --white: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--white);
+    color: var(--black);
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+
+p,
+button {
+    font-weight: 300;
+}
+
+button,
+a {
+    color: inherit;
+    font: inherit;
+}
+
+button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.content-area {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header-container {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 49px;
+    background: var(--white);
+}
+
+.site-header {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1080px;
+    height: 49px;
+    margin: 0 auto;
+    padding: 0 16px;
+    background: var(--white);
+}
+
+.header-side,
+.brand {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    min-width: 0;
+}
+
+.header-side button {
+    padding: 18px 0 16px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 15px;
+    white-space: nowrap;
+}
+
+.header-side-right {
+    justify-content: flex-end;
+}
+
+.header-side-right span {
+    color: var(--black-50);
+}
+
+.brand {
+    justify-content: center;
+    color: inherit;
+    text-decoration: none;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0.42px;
+    white-space: nowrap;
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    /* max-width: 1080px; */
+    height: calc(100vh - 100px);
+    min-height: 320px;
+    overflow: hidden;
+}
+
+.hero>img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-title {
+    gap: 4px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 48px;
+    padding-top: 160px;
+    color: var(--white);
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
+}
+
+.hero-title p,
+.hero-title h1 {
+    margin: 0;
+}
+
+.hero-title p {
+    font-size: 14px;
+    line-height: 19.6px;
+    text-transform: uppercase;
+}
+
+.hero-title h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 41px;
+    letter-spacing: 0.68px;
+}
+
+.collection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px 0;
+    gap: 10px;
+}
+
+.collection>h2 {
+    width: 100%;
+    margin: 0;
+    padding: 0 16px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0.42px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 32px 16px;
+    column-gap: 2px;
+    row-gap: 32px;
+}
+
+.card {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.card-image-wrap {
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 30 / 40;
+}
+
+.card-image-wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .card:hover .card-image-wrap img {
+        transform: scale(1.04);
+    }
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 19.6px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.card-text p {
+    width: 100%;
+    margin: 0;
+}
+
+.card-text .price {
+    color: var(--black-50);
+}
+
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 0;
+    gap: 10px;
+}
+
+.site-footer>h2 {
+    width: 100%;
+    margin: 0;
+    padding: 0 16px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 41px;
+    letter-spacing: 0.68px;
+}
+
+.footer-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 32px 16px;
+}
+
+.footer-buttons button {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top: 0.5px solid var(--black-24);
+    cursor: default;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 12px;
+    letter-spacing: 0.24px;
+    text-align: left;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.footer-buttons button:last-child {
+    border-bottom: 0.5px solid var(--black-24);
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 0 16px;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 0.28px;
+    text-align: left;
+}
+
+.address p {
+    width: 100%;
+    margin: 0;
+}
+
+.address p:not(:first-child) {
+    color: var(--black-75);
+}
+
+.copyright {
+    width: 100%;
+    margin: 0;
+    padding: 32px 16px;
+    color: var(--black-50);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 0.28px;
+}
