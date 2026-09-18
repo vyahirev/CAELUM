@@ -18,22 +18,22 @@
         <div class="header-container">
             <header class="site-header">
                 <div class="header-side">
-                    <button type="button" class="menu-toggle" aria-expanded="false"
+                    <button type="button" class="menu-toggle" data-magnetic aria-expanded="false"
                         aria-controls="menu-overlay">MENU</button>
                 </div>
-                <a href="#" class="brand" aria-label="Scroll to top">CAELUM</a>
+                <a href="#" class="brand" data-magnetic aria-label="Scroll to top">CAELUM</a>
                 <div class="header-side header-side-right">
-                    <button type="button">CART <span>(0)</span></button>
+                    <button type="button" data-magnetic>CART <span>(0)</span></button>
                 </div>
             </header>
         </div>
 
         <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
             <nav class="menu-navigation" aria-label="Main navigation">
-                <a class="menu-item" href="#">HOME</a>
-                <a class="menu-item" href="#">SHOP</a>
-                <a class="menu-item" href="#">ABOUT</a>
-                <a class="menu-item" href="#">CONTACT</a>
+                <a class="menu-item" href="#"><span data-magnetic>ГЛАВНАЯ</span></a>
+                <a class="menu-item" href="#"><span data-magnetic>КАТАЛОГ</span></a>
+                <a class="menu-item" href="#"><span data-magnetic>КОНТАКТЫ</span></a>
+                <a class="menu-item" href="#"><span data-magnetic>БРЭНД</span></a>
                 <!-- <a class="menu-item" href="#">INSTAGRAM</a> -->
             </nav>
         </div>
@@ -127,10 +127,14 @@
         </footer>
     </div>
 
+    <div id="cursor-mag" aria-hidden="true"></div>
+
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const menuOverlay = document.querySelector('.menu-overlay');
         const menuItems = menuOverlay.querySelectorAll('.menu-item');
+        const magneticCursor = document.getElementById('cursor-mag');
+        const supportsMagneticCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
         let closingTimer;
 
         const setMenuState = (isOpen) => {
@@ -145,7 +149,7 @@
             if (!isOpen) {
                 closingTimer = setTimeout(() => {
                     menuOverlay.classList.remove('is-closing');
-                }, 420);
+                }, 470);
             }
         };
 
@@ -166,6 +170,40 @@
                 menuToggle.focus();
             }
         });
+
+        if (supportsMagneticCursor) {
+            let cursorX = 0;
+            let cursorY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            const setCursorHoverState = (isHovered) => {
+                magneticCursor.classList.toggle('is-hovering', isHovered);
+            };
+
+            document.body.style.cursor = 'none';
+
+            document.addEventListener('mousemove', (event) => {
+                targetX = event.clientX;
+                targetY = event.clientY;
+                magneticCursor.classList.add('is-visible');
+
+                const interactiveElement = event.target.closest?.(
+                    '[data-magnetic], a, button:not([disabled])'
+                );
+                setCursorHoverState(Boolean(interactiveElement));
+            }, { passive: true });
+
+            const animateCursor = () => {
+                cursorX += (targetX - cursorX) * 0.35;
+                cursorY += (targetY - cursorY) * 0.35;
+                magneticCursor.style.left = `${cursorX}px`;
+                magneticCursor.style.top = `${cursorY}px`;
+                requestAnimationFrame(animateCursor);
+            };
+
+            animateCursor();
+        }
     </script>
 </body>
 

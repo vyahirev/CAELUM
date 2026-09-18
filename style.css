@@ -80,7 +80,7 @@ button {
 
 .header-side button {
     padding: 18px 0 16px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     line-height: 15px;
     white-space: nowrap;
@@ -114,6 +114,37 @@ button {
     cursor: pointer;
 }
 
+#cursor-mag {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    mix-blend-mode: difference;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 220ms ease, height 220ms ease, opacity 180ms ease;
+}
+
+#cursor-mag.is-visible {
+    opacity: 1;
+}
+
+#cursor-mag.is-hovering {
+    width: 40px;
+    height: 40px;
+}
+
+@media (hover: none), (pointer: coarse) {
+    #cursor-mag {
+        display: none;
+    }
+}
+
 .menu-overlay {
     position: fixed;
     top: 49px;
@@ -143,7 +174,7 @@ button {
 }
 
 .menu-overlay:not(.is-open) {
-    transition: opacity 320ms ease 100ms, visibility 0s linear 420ms;
+    transition: opacity 320ms ease 150ms, visibility 0s linear 470ms;
 }
 
 .menu-overlay.is-closing {
@@ -286,7 +317,7 @@ html {
 }
 
 .hero-title {
-    gap: 8px;
+    gap: 12px;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -320,7 +351,7 @@ html {
 
 .hero-title h1 {
     font-family: "Playfair Display", Georgia, serif;
-    font-size: 34px;
+    font-size: 48px;
     font-weight: 600;
     line-height: 41px;
     letter-spacing: 0.68px;
@@ -412,6 +443,8 @@ html {
 }
 
 .card-text .price {
+    font-size: 14px;
+    font-weight: 300;
     color: var(--black-50);
 }
 
