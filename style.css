@@ -1,3 +1,4 @@
+/* Variables */
 :root {
     --black: #000;
     --black-50: rgba(0, 0, 0, 0.5);
@@ -6,6 +7,7 @@
     --white: #fff;
 }
 
+/* Reset and base */
 * {
     box-sizing: border-box;
 }
@@ -45,6 +47,7 @@ button {
     background: transparent;
 }
 
+/* Header */
 .content-area {
     width: 100%;
     margin: 0 auto;
@@ -114,6 +117,7 @@ button {
     cursor: pointer;
 }
 
+/* Custom cursor */
 #cursor-mag {
     position: fixed;
     top: 0;
@@ -139,12 +143,14 @@ button {
     height: 40px;
 }
 
+/* Cursor responsiveness */
 @media (hover: none), (pointer: coarse) {
     #cursor-mag {
         display: none;
     }
 }
 
+/* Fullscreen menu */
 .menu-overlay {
     position: fixed;
     top: 49px;
@@ -299,6 +305,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Hero */
 .hero {
     position: relative;
     width: 100%;
@@ -357,6 +364,7 @@ html {
     letter-spacing: 0.68px;
 }
 
+/* Products */
 .collection {
     display: flex;
     flex-direction: column;
@@ -380,6 +388,7 @@ html {
     letter-spacing: 0.42px;
 }
 
+/* Product grid */
 .cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -398,6 +407,7 @@ html {
     gap: 10px;
 }
 
+/* Responsive layout */
 @media (min-width: 768px) {
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -448,6 +458,7 @@ html {
     color: var(--black-50);
 }
 
+/* Footer */
 .site-footer {
     display: flex;
     flex-direction: column;

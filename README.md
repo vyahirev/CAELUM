@@ -18,6 +18,7 @@ Experimental fashion website based on a Figma design.
 
 - `index.html` — page structure
 - `style.css` — styles
+- `script.js` — menu and custom cursor behavior
 - `images/` — local images
 
 ## Design
