@@ -8,6 +8,53 @@ const magneticCursor = document.getElementById('cursor-mag');
 const supportsMagneticCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 let closingTimer;
 
+document.documentElement.classList.add('cards-reveal-ready');
+const hero = document.querySelector('.hero');
+
+let heroOpacityFrame;
+
+const updateHeroOpacity = () => {
+    heroOpacityFrame = undefined;
+
+    const progress = Math.min(
+        Math.max(window.scrollY / hero.offsetHeight, 0),
+        1
+    );
+    const opacity = 1 - progress;
+
+    hero.style.setProperty('--hero-opacity', opacity.toFixed(3));
+};
+
+const requestHeroOpacityUpdate = () => {
+    if (heroOpacityFrame === undefined) {
+        heroOpacityFrame = requestAnimationFrame(updateHeroOpacity);
+    }
+};
+
+window.addEventListener('scroll', requestHeroOpacityUpdate, { passive: true });
+window.addEventListener('resize', requestHeroOpacityUpdate);
+updateHeroOpacity();
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    cards.forEach((card) => card.classList.add('is-visible'));
+} else {
+    const cardRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -8% 0px'
+    });
+
+    cards.forEach((card) => cardRevealObserver.observe(card));
+}
+
 const setMenuState = (isOpen) => {
     clearTimeout(closingTimer);
     menuToggle.textContent = isOpen ? 'ЗАКРЫТЬ' : 'МЕНЮ';
