@@ -6,7 +6,54 @@ const productOverlay = document.getElementById('product-overlay');
 const productOverlayClose = productOverlay.querySelector('.product-overlay-close');
 const magneticCursor = document.getElementById('cursor-mag');
 const supportsMagneticCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const loadingScreen = document.getElementById('loading-screen');
+const loadingLogo = document.querySelector('.loading-logo');
 let closingTimer;
+
+const finishLoading = () => {
+    setTimeout(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            loadingLogo.style.opacity = '1';
+        } else if (window.gsap && window.SplitText) {
+            const splitLogo = new SplitText(loadingLogo, { type: 'chars' });
+            gsap.set(splitLogo.chars, {
+                opacity: 0,
+                y: 24,
+                filter: 'blur(6px)'
+            });
+            loadingLogo.style.opacity = '1';
+
+            gsap.to(splitLogo.chars, {
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)',
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power3.out',
+                clearProps: 'transform'
+            });
+        } else {
+            console.warn('GSAP SplitText is unavailable; showing the loading logo without the reveal animation.');
+            loadingLogo.style.opacity = '1';
+        }
+    }, 200);
+
+    setTimeout(() => {
+        loadingScreen.classList.add('is-complete');
+        loadingScreen.style.opacity = '0';
+        document.body.classList.remove('loading-is-active');
+    }, 1600);
+};
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    finishLoading();
+} else if (document.readyState === 'complete') {
+    document.fonts.ready.then(finishLoading);
+} else {
+    window.addEventListener('load', () => {
+        document.fonts.ready.then(finishLoading);
+    }, { once: true });
+}
 
 document.documentElement.classList.add('cards-reveal-ready');
 const hero = document.querySelector('.hero');

@@ -51,6 +51,50 @@ button {
     background: transparent;
 }
 
+/* Loading screen */
+body.loading-is-active {
+    overflow: hidden;
+}
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 600ms ease, visibility 0s linear 600ms;
+}
+
+.loading-screen.is-complete {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    opacity: 0;
+    color: var(--black);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.42px;
+}
+
+.loading-logo .char {
+    display: inline-block;
+    overflow: visible;
+    will-change: transform, opacity, filter;
+}
+
 /* Header */
 .content-area {
     width: 100%;
@@ -284,7 +328,7 @@ button {
     transform: translateY(18px);
     filter: blur(0);
     color: var(--black);
-    font-size: clamp(22px, 4vw, 44px);
+    font-size: clamp(22px, 4vw, 32px);
     /* font-weight: 100; */
     line-height: 1.15;
     /* letter-spacing: 0.04em; */
