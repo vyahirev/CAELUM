@@ -438,6 +438,9 @@ html {
     min-height: 320px;
     overflow: hidden;
     opacity: var(--hero-opacity, 1);
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: opacity;
 }
 
 .hero>img {
@@ -446,6 +449,22 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 600ms ease;
+}
+
+.hero-video.is-ready {
+    opacity: 1;
 }
 
 .hero-title {

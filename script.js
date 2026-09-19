@@ -57,19 +57,44 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 document.documentElement.classList.add('cards-reveal-ready');
 const hero = document.querySelector('.hero');
+const heroVideo = document.querySelector('.hero-video');
+
+const showHeroVideo = () => {
+    heroVideo.classList.add('is-ready');
+};
+
+heroVideo.addEventListener('loadeddata', showHeroVideo, { once: true });
+heroVideo.addEventListener('canplay', showHeroVideo, { once: true });
+
+if (heroVideo.readyState >= 2) {
+    showHeroVideo();
+}
+
+heroVideo.addEventListener('error', () => {
+    heroVideo.classList.remove('is-ready');
+});
 
 let heroOpacityFrame;
+let heroOpacity = 1;
+let targetHeroOpacity = 1;
 
 const updateHeroOpacity = () => {
-    heroOpacityFrame = undefined;
-
     const progress = Math.min(
-        Math.max(window.scrollY / hero.offsetHeight, 0),
+        Math.max(window.scrollY / (hero.offsetHeight * 0.8), 0),
         1
     );
-    const opacity = 1 - progress;
+    targetHeroOpacity = 1 - progress;
+    heroOpacity += (targetHeroOpacity - heroOpacity) * 0.2;
 
-    hero.style.setProperty('--hero-opacity', opacity.toFixed(3));
+    hero.style.setProperty('--hero-opacity', heroOpacity.toFixed(3));
+
+    if (Math.abs(targetHeroOpacity - heroOpacity) > 0.001) {
+        heroOpacityFrame = requestAnimationFrame(updateHeroOpacity);
+    } else {
+        heroOpacity = targetHeroOpacity;
+        hero.style.setProperty('--hero-opacity', heroOpacity.toFixed(3));
+        heroOpacityFrame = undefined;
+    }
 };
 
 const requestHeroOpacityUpdate = () => {
